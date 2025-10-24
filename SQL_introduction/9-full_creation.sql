@@ -1,10 +1,10 @@
 -- Create second_table with id, name, score if missing, then insert multiple rows
-CREATE TABLE IF NOT EXISTS second_table (
+DROP TABLE IF EXISTS second_table;
+CREATE TABLE second_table (
     id INT,
     name VARCHAR(256),
-    core INT
+    score INT
 );
-
 INSERT INTO second_table (id, name, score) VALUES
 (1, 'John', 10),
 (2, 'Alex', 3),
