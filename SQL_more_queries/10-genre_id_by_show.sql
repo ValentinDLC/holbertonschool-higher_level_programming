@@ -1,10 +1,5 @@
--- This script lists all TV shows that have at least one genre linked.
--- We select the show title and the genre_id from tv_show_genres.
--- Only shows with genres are displayed.
--- Results are sorted by tv_shows.title and genre_id ascending.
-
-USE hbtn_0d_tvshows;
-
+-- Lists all shows with at least one genre
+-- Results sorted by title and genre_id ascending
 SELECT tv_shows.title, tv_show_genres.genre_id
 FROM tv_shows
 JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id

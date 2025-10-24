@@ -1,0 +1,180 @@
+
+
+
+
+
+
+
+#!/usr/bin/python3
+"""Module that creates a Python object from a JSON file (input operation)"""
+
+import json
+
+def load_from_json_file(filename):
+    """
+    Reads a JSON file and deserializes it into a Python object.
+    
+    Input:   a filename (str) containing JSON data
+    Output:  the corresponding Python object (dict, list, str, int, etc.)
+    """
+    with open(filename, encoding="utf-8") as f:
+        return json.load(f)
+
+
+
+
+
+
+
+
+#!/usr/bin/python3
+"""Module that returns the dictionary description of a Python object for JSON serialization (output operation)"""
+
+def class_to_json(obj):
+    """
+    Returns the dictionary representation of a Python object suitable for JSON serialization.
+    
+    Input:   a Python object (any instance of a class)
+    Output:  a dictionary containing the object's attributes and their values
+    """
+    return obj.__dict__
+
+
+
+
+#!/usr/bin/python3
+"""Module that defines a Student class with JSON serialization support"""
+
+class Student:
+    """Class representing a student"""
+
+    def __init__(self, first_name, last_name, age):
+        """
+        Initializes a Student instance.
+        
+        Input:   first_name (str), last_name (str), age (int)
+        Output:  a Student object with these attributes
+        """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def to_json(self):
+        """
+        Retrieves a dictionary representation of the Student instance.
+        
+        Input:   the Student instance itself
+        Output:  a dictionary containing the instance's attributes
+        """
+        return self.__dict__
+
+
+
+
+#!/usr/bin/python3
+"""Module that defines a Student class with filtered JSON serialization"""
+
+class Student:
+    """Class representing a student"""
+
+    def __init__(self, first_name, last_name, age):
+        """
+        Initializes a Student instance.
+        
+        Input:   first_name (str), last_name (str), age (int)
+        Output:  a Student object with these attributes
+        """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def to_json(self, attrs=None):
+        """
+        Retrieves a dictionary representation of the Student instance.
+        
+        Input:   attrs (list of strings) – optional list of attribute names to filter
+        Output:  dictionary containing only the requested attributes (or all if attrs is None)
+        """
+        if attrs is None:
+            return self.__dict__
+
+        result = {}
+        for attr in attrs:
+            if hasattr(self, attr):
+                result[attr] = getattr(self, attr)
+        return result
+
+
+#!/usr/bin/python3
+"""Module that defines a Student class with JSON serialization/deserialization"""
+
+class Student:
+    """Class representing a student"""
+
+    def __init__(self, first_name, last_name, age):
+        """
+        Initializes a Student instance.
+        
+        Input:   first_name (str), last_name (str), age (int)
+        Output:  a Student object with these attributes
+        """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def to_json(self, attrs=None):
+        """
+        Retrieves a dictionary representation of the Student instance.
+        
+        Input:   attrs (list of strings) – optional list of attribute names to filter
+        Output:  dictionary containing only the requested attributes (or all if attrs is None)
+        """
+        if attrs is None:
+            return self.__dict__
+
+        result = {}
+        for attr in attrs:
+            if hasattr(self, attr):
+                result[attr] = getattr(self, attr)
+        return result
+
+    def reload_from_json(self, json):
+        """
+        Replaces all attributes of the Student instance with values from a dictionary.
+        
+        Input:   json (dict) – attribute names and values
+        Output:  updated Student instance with new attribute values
+        """
+        for key, value in json.items():
+            setattr(self, key, value)
+
+
+
+#!/usr/bin/python3
+"""Module that generates Pascal's Triangle (output operation)"""
+
+def pascal_triangle(n):
+    """
+    Returns a list of lists of integers representing Pascal's triangle of n rows.
+    
+    Input:
+        n (int): number of rows in the triangle
+    Output:
+        List of lists representing Pascal's triangle, or empty list if n <= 0
+    """
+    if n <= 0:
+        return []
+
+    # Initialize triangle with the first row
+    triangle = [[1]]
+
+    # Generate each row
+    for i in range(1, n):
+        row = [1]  # First element is always 1
+        for j in range(1, i):
+            # Sum of two elements above in the previous row
+            row.append(triangle[i-1][j-1] + triangle[i-1][j])
+        row.append(1)  # Last element is always 1
+        triangle.append(row)
+
+    return triangle
