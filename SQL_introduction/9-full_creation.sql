@@ -1,5 +1,4 @@
 -- Create second_table with id, name, score if missing, then insert multiple rows
-DROP TABLE IF EXISTS second_table;
 CREATE TABLE second_table (
     id INT,
     name VARCHAR(256),
