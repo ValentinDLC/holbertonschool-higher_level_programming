@@ -1,0 +1,153 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+# Test basic text with period
+>>> text_indentation("Hello.")
+Hello.
+<BLANKLINE>
+
+# Test with question mark
+>>> text_indentation("How are you?")
+How are you?
+<BLANKLINE>
+
+# Test with colon
+>>> text_indentation("Here:")
+Here:
+<BLANKLINE>
+
+# Test with multiple delimiters
+>>> text_indentation("Hello. How are you? Good: thanks.")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+Good:
+<BLANKLINE>
+thanks.
+<BLANKLINE>
+
+# Test with spaces after delimiters (should be removed)
+>>> text_indentation("Hello.   World")
+Hello.
+<BLANKLINE>
+World
+
+# Test with spaces before delimiters
+>>> text_indentation("Hello   . World")
+Hello   .
+<BLANKLINE>
+World
+
+# Test TypeError when text is not a string
+>>> text_indentation(123)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test TypeError when text is None
+>>> text_indentation(None)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test TypeError when text is a list
+>>> text_indentation(["Hello", "World"])
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test with empty string
+>>> text_indentation("")
+
+# Test with only delimiters
+>>> text_indentation(".:?")
+.
+<BLANKLINE>
+:
+<BLANKLINE>
+?
+<BLANKLINE>
+
+# Test with text without delimiters
+>>> text_indentation("Hello World")
+Hello World
+
+# Test with newlines in text
+>>> text_indentation("Hello.\nWorld")
+Hello.
+<BLANKLINE>
+<BLANKLINE>
+World
+
+# Test with multiple spaces after delimiter
+>>> text_indentation("Hello.     World.     Test")
+Hello.
+<BLANKLINE>
+World.
+<BLANKLINE>
+Test
+
+# Test complex text (similar to main example)
+>>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? Non autem hoc: igitur ne illud quidem.")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
+<BLANKLINE>
+Non autem hoc:
+<BLANKLINE>
+igitur ne illud quidem.
+<BLANKLINE>
+
+# Test with only spaces
+>>> text_indentation("   ")
+   
+
+# Test with delimiter at the beginning
+>>> text_indentation(".Hello")
+.
+<BLANKLINE>
+Hello
+
+# Test with consecutive delimiters
+>>> text_indentation("Hello..World")
+Hello.
+<BLANKLINE>
+.
+<BLANKLINE>
+World
+
+# Test TypeError with integer
+>>> text_indentation(42)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test TypeError with float
+>>> text_indentation(3.14)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test TypeError with dictionary
+>>> text_indentation({"key": "value"})
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test with single character
+>>> text_indentation("a")
+a
+
+# Test with tab characters
+>>> text_indentation("Hello.\tWorld")
+Hello.
+<BLANKLINE>
+	World
+
+# Test no arguments
+>>> text_indentation()
+Traceback (most recent call last):
+    ...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
