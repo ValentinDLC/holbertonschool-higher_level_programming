@@ -72,10 +72,9 @@ TypeError: text must be a string
 >>> text_indentation("Hello World")
 Hello World
 
-# Test with newlines in text
+# Test with newlines in text (IMPORTANT: only ONE blank line)
 >>> text_indentation("Hello.\nWorld")
 Hello.
-<BLANKLINE>
 <BLANKLINE>
 World
 
@@ -151,3 +150,15 @@ Hello.
 Traceback (most recent call last):
     ...
 TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+# Test with multiple newlines after delimiter
+>>> text_indentation("Hello.\n\nWorld")
+Hello.
+<BLANKLINE>
+World
+
+# Test with space and newline after delimiter
+>>> text_indentation("Hello.  \n  World")
+Hello.
+<BLANKLINE>
+World
