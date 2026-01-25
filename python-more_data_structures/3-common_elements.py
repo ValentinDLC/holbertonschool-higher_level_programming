@@ -7,4 +7,3 @@ def common_elements(set_1, set_2):
             empty_set.append(element)
 
     return empty_set
- ### return set_1 & set_2
