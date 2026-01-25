@@ -21,22 +21,33 @@ def matrix_divided(matrix, div):
         TypeError: if div is not a number
         ZeroDivisionError: if div is zero
     """
-    # Validate matrix structure and content
-    if (not isinstance(matrix, list) or
-        matrix == [] or
-        not all(isinstance(row, list) for row in matrix) or
-        not all(isinstance(num, (int, float)) for row in matrix for num in row)):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    error_msg = "matrix must be a matrix (list of lists) of integers/floats"
+
+    # Validate matrix structure
+    if not isinstance(matrix, list) or len(matrix) == 0:
+        raise TypeError(error_msg)
+
+    for row in matrix:
+        if not isinstance(row, list) or len(row) == 0:
+            raise TypeError(error_msg)
+        for num in row:
+            if not isinstance(num, (int, float)) or isinstance(num, bool):
+                raise TypeError(error_msg)
 
     # Validate row sizes
     row_length = len(matrix[0])
     if not all(len(row) == row_length for row in matrix):
         raise TypeError("Each row of the matrix must have the same size")
 
-    # Validate div
-    if not isinstance(div, (int, float)):
+    # Validate div (check bool is subclass of int)
+    if isinstance(div, bool) or not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
 
+    # Check for NaN and infinity
+    if div != div or div == float('inf') or div == float('-inf'):
+        raise TypeError("div must be a number")
+
+    # Check division by zero
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
