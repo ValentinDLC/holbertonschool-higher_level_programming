@@ -6,7 +6,7 @@ Defines a Rectangle class with width and height
 
 class Rectangle:
     """
-    Represents a rectangle
+    Represents a rectangle and instance counting
     """
     number_of_instances = 0
 
@@ -117,7 +117,7 @@ class Rectangle:
 
     def __del__(self):
         """
-        Print a message when an instance of Rectangle is deleted
+        Print a message when an instance of Rectangle is deleted and decrement the counter
         """
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
