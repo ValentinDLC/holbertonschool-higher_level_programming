@@ -100,7 +100,8 @@ class Rectangle:
         Return a string representation of the rectangle using '#'
 
         Returns:
-            str: Rectangle drawn with `print_symbol` or empty string if width or height is 0
+            str: Rectangle drawn with `print_symbol`
+            or empty string if width or height is 0
         """
         if self.__width == 0 or self.__height == 0:
             return ""
@@ -119,7 +120,8 @@ class Rectangle:
 
     def __del__(self):
         """
-        Print a message when an instance of Rectangle is deleted and decrement the counter
+        Print a message when an instance of Rectangle is deleted
+        and decrement the counter
         """
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
