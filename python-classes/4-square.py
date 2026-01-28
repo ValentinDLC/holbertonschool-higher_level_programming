@@ -4,15 +4,16 @@ Defines a Square class with a private size attribute,
 getter, setter, and area computation.
 """
 
+
 class Square:
     """
     Represents a square
     """
-    def __init__(self, size=0):    
+    def __init__(self, size=0):
         """
         Initializes a Square with a given size
         """
-        self.size = size 
+        self.size = size
 
     @property
     def size(self):
@@ -37,7 +38,7 @@ class Square:
             raise TypeError("Size must be an integer")
         if value < 0:
             raise ValueError("Size must be >= 0")
-        
+
         self.__size = value
 
     def area(self):
@@ -45,4 +46,3 @@ class Square:
         Returns the current area of the square
         """
         return self.__size ** 2
-    

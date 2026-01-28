@@ -2,6 +2,8 @@
 """
 Defines a Square class with size validation and area computation
 """
+
+
 class Square:
     """
     Represents a square
@@ -17,19 +19,18 @@ class Square:
             TypeError: If size is not an integer
             ValueError: If size is less than 0
         """
-        if not isinstance(size,int):
+        if not isinstance(size, int):
             raise TypeError("Size must be an integer")
         if size < 0:
             raise ValueError("Size must be >= 0")
-        
+
         self.__size = size
-    
+
     def area(self):
         """
         Returns the current area of the square
-        
+
         Return:
             int: the area (side * side)
         """
         return self.__size ** 2
-    
