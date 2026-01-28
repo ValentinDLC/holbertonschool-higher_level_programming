@@ -6,9 +6,10 @@ Defines a Rectangle class with width and height
 
 class Rectangle:
     """
-    Represents a rectangle and instance counting
+    Represents a rectangle, instance counting, and print symbol
     """
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """
@@ -99,12 +100,14 @@ class Rectangle:
         Return a string representation of the rectangle using '#'
 
         Returns:
-            str: Rectangle as a string of '#' characters
+            str: Rectangle drawn with `print_symbol` or
+            empty string if width or height is 0
         """
         if (self.__width or self.__height) == 0:
             return ""
+        symbol = str(self.print_symbol)
 
-        return "\n".join("#" * self.__width for _ in range(self.__height))
+        return "\n".join(symbol * self.__width for _ in range(self.__height))
 
     def __repr__(self):
         """
@@ -117,7 +120,17 @@ class Rectangle:
 
     def __del__(self):
         """
-        Print a message when an instance of Rectangle is deleted and decrement the counter
+        Print a message when an instance of Rectangle is deleted
+        and decrement the counter
         """
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """Return the rectangle with the bigger or equal area"""
+        for i, rect in enumerate((rect_1, rect_2), start=1):
+            if not isinstance(rect, Rectangle):
+                raise TypeError(f"rect_{i} must be an instance of Rectangle")
+
+        return rect_1 if rect_1.area() >= rect_2.area() else rect_2
