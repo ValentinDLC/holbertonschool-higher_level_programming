@@ -1,23 +1,14 @@
 #!/usr/bin/python3
-"""City model for SQLAlchemy.
-
-City inherits Base from model_state to ensure the same metadata and
-proper foreign key relation to states.id.
-Studious English comments.
-"""
+"""Defines the City model mapped to the cities table in MySQL."""
 from sqlalchemy import Column, Integer, String, ForeignKey
-from model_state import Base  # import Base from model_state as requested
+from model_state import Base
 
 
 class City(Base):
-    """City class mapped to the 'cities' table.
+    """City class linked to the cities table, with a foreign key to states."""
 
-    - id: auto-increment integer primary key, not nullable
-    - name: string up to 128 chars, not nullable
-    - state_id: integer foreign key referencing states.id, not nullable
-    """
     __tablename__ = 'cities'
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
-    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
     name = Column(String(128), nullable=False)
+    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
