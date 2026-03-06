@@ -1,18 +1,23 @@
 #!/usr/bin/python3
-"""List states matching argument safely to prevent SQL injection"""
-import MySQLdb
+"""Lists states matching a given name, safe from SQL injection."""
 import sys
+import MySQLdb
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", port=3306,
-                         user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    cursor = db.cursor()
-    
-    # Use parameterized query to avoid SQL injection
-    cursor.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC;", (sys.argv[4],))
-    
-    for state in cursor.fetchall():
-        print(state)
-    
-    cursor.close()
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3],
+        charset="utf8"
+    )
+    cur = db.cursor()
+    cur.execute(
+        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
+        (sys.argv[4],)
+    )
+    for row in cur.fetchall():
+        print(row)
+    cur.close()
     db.close()
